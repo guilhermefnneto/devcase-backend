@@ -13,11 +13,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
+/**
+ * Entidade de negócio que representa o cliente.
+ */
 @Entity(name="cliente")
 public class Cliente {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@Column(nullable=false)
 	private String nome;
@@ -40,11 +43,11 @@ public class Cliente {
 	private Long pontos;
 	
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -110,6 +113,25 @@ public class Cliente {
 	
 	public void setPontos(Long pontos) {
 		this.pontos = pontos;
+	}
+	
+	
+	/**
+	 * Copia os dados do cliente passado como argumento para o objeto que solicitou a ação do método.
+	 * Apenas o id não é copiado.
+	 * @param cliente O objeto que contém as informações a serem copiadas.
+	 */
+	public void copyFrom(Cliente cliente) {
+		if (cliente == null) return;
+		
+		if (cliente.getNome()                 != null) setNome(cliente.getNome());
+		if (cliente.getNascimento()           != null ) setNascimento(cliente.getNascimento());
+		if (cliente.getSexo()                 != null) setSexo(cliente.getSexo());
+		if (cliente.getTelefoneResidencial()  != null) setTelefoneResidencial(cliente.getTelefoneResidencial());
+		if (cliente.getTelefoneCelular()      != null) setTelefoneCelular(cliente.getTelefoneCelular());
+		if (cliente.getEmail()                != null) setEmail(cliente.getEmail());
+		if (cliente.getEstadoCivil()          != null) setEstadoCivil(cliente.getEstadoCivil());
+		if (cliente.getPontos()               != null) setPontos(cliente.getPontos());
 	}
 	
 }
