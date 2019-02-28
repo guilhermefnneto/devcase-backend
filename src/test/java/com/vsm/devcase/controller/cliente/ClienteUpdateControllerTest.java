@@ -16,7 +16,7 @@ import com.vsm.devcase.model.EstadoCivil;
 
 
 /**
- * Teste do controle da atualização do cliente. 
+ * Teste do gerenciamento do cliente: funcionalidade de atualização de um cliente. 
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

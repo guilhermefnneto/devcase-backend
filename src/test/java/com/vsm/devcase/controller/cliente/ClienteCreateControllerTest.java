@@ -19,7 +19,7 @@ import com.vsm.devcase.model.Sexo;
 
 
 /**
- * Teste do controle da criação do cliente. 
+ * Teste do gerenciamento do cliente: funcionalidade de criação de um cliente.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -86,6 +86,8 @@ public class ClienteController {
 	 */
 	@DeleteMapping
 	public ResponseEntity<Cliente> delete(@PathVariable("id") Long id) {
+		System.out.println("delete: " + id);
+		
 		Optional<Cliente> optionalClienteRecuperado = clienteRepository.findById(id);
 		
 		if (!optionalClienteRecuperado.isPresent()) {

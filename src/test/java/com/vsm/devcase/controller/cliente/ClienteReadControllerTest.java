@@ -15,7 +15,7 @@ import com.vsm.devcase.model.Cliente;
 
 
 /**
- * Teste do controle da recuperação do cliente. 
+ * Teste do gerenciamento do cliente: funcionalidade de recuperação de um cliente.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,7 +30,7 @@ public class ClienteReadControllerTest {
 		
 		ResponseEntity<Cliente> response = rest.getForEntity(uri, Cliente.class);
 				
-		Assert.assertEquals("Juliano Marques", response.getBody().getNome());
+		Assert.assertEquals("Juliana Marques", response.getBody().getNome());
 	}
 	
 
