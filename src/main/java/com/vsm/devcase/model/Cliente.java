@@ -1,5 +1,6 @@
 package com.vsm.devcase.model;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -40,7 +41,7 @@ public class Cliente {
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 	
-	private Long pontos;
+	private BigInteger pontos;
 	
 
 	public Long getId() {
@@ -107,11 +108,11 @@ public class Cliente {
 		this.estadoCivil = estadoCivil;
 	}
 	
-	public Long getPontos() {
+	public BigInteger getPontos() {
 		return pontos;
 	}
 	
-	public void setPontos(Long pontos) {
+	public void setPontos(BigInteger pontos) {
 		this.pontos = pontos;
 	}
 	

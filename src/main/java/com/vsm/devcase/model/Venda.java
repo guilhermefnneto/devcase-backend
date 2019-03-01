@@ -1,7 +1,7 @@
 package com.vsm.devcase.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,33 +9,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name="venda")
 public class Venda {
 
+	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	/* Váras vendas podem ser feitas para um mesmo cliente. */
+	@ManyToOne
+	private Cliente cliente;
+
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
-	/*
-	 *  Váras vendas podem ser feitas para um mesmo cliente. 
-	 */
-	@ManyToOne
-	private Cliente cliente;
-	
-	/*
-	 * Uma venda pode conter vários itens.
-	 */
 	@Column(nullable=false)
-	@OneToMany
-	private List<Item> itens;
-	
+	private BigDecimal valor;
 	
 
 	public Long getId() {
@@ -46,14 +39,6 @@ public class Venda {
 		this.id = id;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -62,12 +47,20 @@ public class Venda {
 		this.cliente = cliente;
 	}
 
-	public List<Item> getItens() {
-		return itens;
+	public Date getData() {
+		return data;
 	}
 
-	public void setItens(List<Item> itens) {
-		this.itens = itens;
+	public void setData(Date data) {
+		this.data = data;
+	}
+	
+	public BigDecimal getValor() {
+		return valor;
+	}
+	
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 	
 }

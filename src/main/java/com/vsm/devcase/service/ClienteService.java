@@ -1,5 +1,6 @@
 package com.vsm.devcase.service;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,15 @@ public class ClienteService {
 	
 	
 	/**
+	 * Método responsável por recuperar do repositório todos os clientes cadastrados.
+	 * @return Uma lista com todos os clientes cadastrados.
+	 */
+	public Iterable<Cliente> readAll() {
+		return clienteRepository.findAll();
+	}
+	
+	
+	/**
 	 * Método responsável por atualizar as informações do cliente identificado.
 	 * @param id Id do cliente a ser recuperado.
 	 * @param cliente POJO do cliente contendo as informações de atualização.
@@ -68,6 +78,27 @@ public class ClienteService {
 	
 	
 	/**
+	 * Método responsável por atualizar os pontos do cliente.
+	 * @param id O id do cliente a ter o seus pontos atualizados.
+	 * @param pontos Os pontos a serem somados aos pontos do cliente.
+	 * @return O POJO do cliente atualizado, caso contrário, null.
+	 */
+	public Cliente sumPontos(Long id, BigInteger pontos) {
+		Optional<Cliente> optionalClienteRecuperado = clienteRepository.findById(id);
+		
+		if (!optionalClienteRecuperado.isPresent()) {
+			return null;
+		}
+		
+		Cliente clienteRecuperado = optionalClienteRecuperado.get();
+		
+		clienteRecuperado.setPontos(new BigInteger(String.valueOf(clienteRecuperado.getPontos().longValue() + pontos.longValue())));
+		
+		return clienteRepository.save(clienteRecuperado);
+	}
+	
+	
+	/**
 	 * Método responsável pela remoção do cliente no repositório.
 	 * @param id Id do cliente a ser removido.
 	 * @return true para cliente removido ou false caso contrário.
@@ -82,15 +113,6 @@ public class ClienteService {
 		clienteRepository.delete(optionalClienteRecuperado.get());
 		
 		return true;
-	}
-	
-	
-	/**
-	 * Método responsável por recuperar do repositório todos os clientes cadastrados.
-	 * @return Uma lista com todos os clientes cadastrados.
-	 */
-	public Iterable<Cliente> readAll() {
-		return clienteRepository.findAll();
 	}
 	
 	

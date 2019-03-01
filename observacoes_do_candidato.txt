@@ -28,13 +28,3 @@ INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (5, 1.0, 50.0)
 INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (10, 50.00, 100.0);
 INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (15, 100.01, 150.0);
 INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (20, 150.01, 200.0);
-
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Doril', 7.0, 100);
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Dorflex', 15.0, 50);
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Lacto Purga', 3.5, 180);
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Biotônico Fontoura', 22.0, 23);
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Shampoo La Roche', 80.0, 4);
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Pastilhas Anti-Tosse', 2.0, 35);
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Benegrip', 8.7, 13);
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Sabonete Febo', 6.2, 2);
-INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Epocler', 2.0, 8);

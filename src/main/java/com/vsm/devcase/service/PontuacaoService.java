@@ -1,5 +1,6 @@
 package com.vsm.devcase.service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,16 @@ public class PontuacaoService {
 	 */
 	public Iterable<Pontuacao> readAll() {
 		return pontuacaoRepository.findAll();
+	}
+	
+	
+	/**
+	 * Método responsável por recuperar uma pontuação pelo valor encontrado em um intervalo de valores da pontuação.
+	 * @param valor O valor a ser utilizado como referência.
+	 * @return A pontuação encontrada ou null caso contrário.
+	 */
+	public Pontuacao readByIntervalValor(BigDecimal valor) {
+		return pontuacaoRepository.readByIntervalValores(valor);
 	}
 	
 	

@@ -1,5 +1,8 @@
 package com.vsm.devcase.model;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,12 +17,13 @@ public class Pontuacao {
 	private Long id;
 	
 	@Column(nullable=false)
-	private Integer pontos;
+	private BigInteger pontos;
 	
 	@Column(nullable=false)
-	private Double valorInicial;
+	private BigDecimal valorInicial;
 	
-	private Double valorFinal;
+	@Column(nullable=false)
+	private BigDecimal valorFinal;
 
 	
 	public Long getId() {
@@ -30,27 +34,27 @@ public class Pontuacao {
 		this.id = id;
 	}
 
-	public Integer getPontos() {
+	public BigInteger getPontos() {
 		return pontos;
 	}
 
-	public void setPontos(Integer pontos) {
+	public void setPontos(BigInteger pontos) {
 		this.pontos = pontos;
 	}
 
-	public Double getValorInicial() {
+	public BigDecimal getValorInicial() {
 		return valorInicial;
 	}
 
-	public void setValorInicial(Double valorInicial) {
+	public void setValorInicial(BigDecimal valorInicial) {
 		this.valorInicial = valorInicial;
 	}
 	
-	public Double getValorFinal() {
+	public BigDecimal getValorFinal() {
 		return valorFinal;
 	}
 	
-	public void setValorFinal(Double valorFinal) {
+	public void setValorFinal(BigDecimal valorFinal) {
 		this.valorFinal = valorFinal;
 	}
 	
