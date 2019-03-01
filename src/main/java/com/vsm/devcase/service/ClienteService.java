@@ -70,18 +70,18 @@ public class ClienteService {
 	/**
 	 * Método responsável pela remoção do cliente no repositório.
 	 * @param id Id do cliente a ser removido.
-	 * @return O cliente removido ou null caso não tenha sido encontrado.
+	 * @return true para cliente removido ou false caso contrário.
 	 */
-	public Cliente delete(Long id) {
+	public Boolean delete(Long id) {
 		Optional<Cliente> optionalClienteRecuperado = clienteRepository.findById(id);
 		
 		if (!optionalClienteRecuperado.isPresent()) {
-			return null;
+			return false;
 		}
 		
 		clienteRepository.delete(optionalClienteRecuperado.get());
 		
-		return optionalClienteRecuperado.get();
+		return true;
 	}
 	
 	

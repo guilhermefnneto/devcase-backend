@@ -71,13 +71,13 @@ public class PontuacaoController {
 	/**
 	 * Remove a pontuação correspondente ao id informado.
 	 * @param id O id da pontuação a ser removida.
-	 * @return O POJO da pontuação removida, se não a informação de que não foi encontrada.
+	 * @return true indicando que a pontuação foi removida, se não a informação de que não foi encontrada.
 	 */
 	@DeleteMapping(value="{id}")
-	public ResponseEntity<Pontuacao> delete(@PathVariable("id") Long id) {
-		Pontuacao pontuacaoRemovida = pontuacaoService.delete(id);
+	public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
+		Boolean pontuacaoRemovida = pontuacaoService.delete(id);
 		
-		return pontuacaoRemovida != null ?ResponseEntity.ok(pontuacaoRemovida) :ResponseEntity.notFound().build();
+		return pontuacaoRemovida ?ResponseEntity.ok(pontuacaoRemovida) :ResponseEntity.notFound().build();
 	}
 	
 	

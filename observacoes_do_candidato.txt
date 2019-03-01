@@ -7,21 +7,27 @@ DEVCASE-BACKEND
 
 
 -- Estrutura e Dados para alimentação inicial da base de dados.
+-- As tabelas serão automaticamente criadas pelo framework correspondente à especificação JPA (Hibernate). 
 
 CREATE DATABASE devcase;
 
--- As tabelas serão automaticamente criadas pelo framework correspondente à especificação JPA (Hibernate). 
+USE devcase;
 
--- Cliente
+
+-- intervalo: suba o Spring para depois executar os inserts abaixo.
+
 
 INSERT INTO cliente (nome, nascimento, sexo, telefone_residencial, telefone_celular, email, estado_civil, pontos) VALUES ('Guilherme Francisco Nuno Neto', '1983-05-17', 'MASCULINO', null, 14991193518, 'guilherme.fn.neto@outlook.com', 'SOLTEIRO', 0);
-INSERT INTO cliente (nome, nascimento, sexo, telefone_residencial, telefone_celular, email, estado_civil, pontos) VALUES ('Fabiano Alonso Pascoaletto', '1982-11-28', 'MASCULINO', null, 14988886666, 'fabiano.pascoaletto@yahoo.com', 'CASADO', 0);
+INSERT INTO cliente (nome, nascimento, sexo, telefone_residencial, telefone_celular, email, estado_civil, pontos) VALUES ('Fabiano Alonso Pascoaletto', '1982-11-28', 'MASCULINO', null, 14988886666, 'fabiano.pascoaletto@yahoo.com', 'SOLTEIRO', 0);
 INSERT INTO cliente (nome, nascimento, sexo, telefone_residencial, telefone_celular, email, estado_civil, pontos) VALUES ('Leopoldo Gutierrez', '1974-02-02', 'MASCULINO', null, 14976554433, 'leopoldo.gutierrez@yahoo.com', 'CASADO', 0);
 INSERT INTO cliente (nome, nascimento, sexo, telefone_residencial, telefone_celular, email, estado_civil, pontos) VALUES ('Maria Ferreira Pietro', '1986-06-20', 'FEMININO', null, 14998787896, 'maria.pietro@gmail.com', 'SOLTEIRO', 0);
 INSERT INTO cliente (nome, nascimento, sexo, telefone_residencial, telefone_celular, email, estado_civil, pontos) VALUES ('Júlia Tertulliano', '1979-09-30', 'FEMININO', null, 14996322105, 'julia.tertulliano@gmail.com', 'CASADO', 0);
 INSERT INTO cliente (nome, nascimento, sexo, telefone_residencial, telefone_celular, email, estado_civil, pontos) VALUES ('Pérola da Glória', '1960-01-10', 'FEMININO', null, 14997766544, 'perola.gloria@outlook.com', 'VIUVO', 0);
 
--- Produto
+INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (5, 1.0, 50.0);
+INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (10, 50.00, 100.0);
+INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (15, 100.01, 150.0);
+INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (20, 150.01, 200.0);
 
 INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Doril', 7.0, 100);
 INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Dorflex', 15.0, 50);
@@ -32,16 +38,3 @@ INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Pastilhas An
 INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Benegrip', 8.7, 13);
 INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Sabonete Febo', 6.2, 2);
 INSERT INTO produto (descricao, preco, quantidade_estoque) VALUES ('Epocler', 2.0, 8);
-
--- Pontuação
-
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (5, 1.0, 50.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (10, 50.01, 100.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (15, 100.01, 150.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (20, 150.01, 200.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (25, 200.01, 250.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (30, 250.01, 300.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (35, 300.01, 350.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (40, 350.01, 400.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (45, 400.01, 450.0);
-INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (50, 450.01, null);

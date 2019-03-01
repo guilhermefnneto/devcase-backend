@@ -74,13 +74,13 @@ public class ClienteController {
 	/**
 	 * Remove o cliente correspondente ao id informado.
 	 * @param id O id do cliente a ser removido.
-	 * @return O POJO do cliente removido, se não a informação de que não foi encontrado.
+	 * @return O valor true indicando que o cliente foi removido, se não a informação de que não foi encontrado.
 	 */
 	@DeleteMapping(value="{id}")
-	public @ResponseBody ResponseEntity<Cliente> delete(@PathVariable("id") Long id) {
-		Cliente clienteRemovido = clienteService.delete(id);
+	public @ResponseBody ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
+		Boolean clienteRemovido = clienteService.delete(id);
 		
-		return clienteRemovido != null ?ResponseEntity.ok(clienteRemovido) :ResponseEntity.notFound().build();
+		return clienteRemovido ?ResponseEntity.ok(clienteRemovido) :ResponseEntity.notFound().build();
 	}
 	
 	

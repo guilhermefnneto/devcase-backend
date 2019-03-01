@@ -78,18 +78,18 @@ public class PontuacaoService {
 	/**
 	 * Método responsável pela remoção da pontuação no repositório.
 	 * @param id Id da pontuação a ser removida.
-	 * @return A pontuação removida ou null caso não tenha sido encontrada.
+	 * @return true caso a pontuação tenha sido removida, e false caso contrário.
 	 */
-	public Pontuacao delete(Long id) {
+	public Boolean delete(Long id) {
 		Optional<Pontuacao> optionalPontuacaoRecuperada = pontuacaoRepository.findById(id);
 		
 		if (!optionalPontuacaoRecuperada.isPresent()) {
-			return null;
+			return false;
 		}
 		
 		pontuacaoRepository.delete(optionalPontuacaoRecuperada.get());
 		
-		return optionalPontuacaoRecuperada.get();
+		return true;
 	}
 	
 	
