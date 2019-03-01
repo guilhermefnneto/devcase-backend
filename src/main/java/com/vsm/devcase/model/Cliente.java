@@ -116,22 +116,4 @@ public class Cliente {
 	}
 	
 	
-	/**
-	 * Copia os dados do cliente passado como argumento para o objeto que solicitou a ação do método.
-	 * Apenas o id não é copiado.
-	 * @param cliente O objeto que contém as informações a serem copiadas.
-	 */
-	public void copyFrom(Cliente cliente) {
-		if (cliente == null) return;
-		
-		if (cliente.getNome()                 != null) setNome(cliente.getNome());
-		if (cliente.getNascimento()           != null ) setNascimento(cliente.getNascimento());
-		if (cliente.getSexo()                 != null) setSexo(cliente.getSexo());
-		if (cliente.getTelefoneResidencial()  != null) setTelefoneResidencial(cliente.getTelefoneResidencial());
-		if (cliente.getTelefoneCelular()      != null) setTelefoneCelular(cliente.getTelefoneCelular());
-		if (cliente.getEmail()                != null) setEmail(cliente.getEmail());
-		if (cliente.getEstadoCivil()          != null) setEstadoCivil(cliente.getEstadoCivil());
-		if (cliente.getPontos()               != null) setPontos(cliente.getPontos());
-	}
-	
 }

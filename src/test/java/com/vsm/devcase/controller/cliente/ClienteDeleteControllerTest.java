@@ -24,7 +24,7 @@ public class ClienteDeleteControllerTest {
 		
 		RestTemplate rest = new RestTemplate();
 		
-		URI uri = new URI("http://localhost:9000/cliente/14");
+		URI uri = new URI("http://localhost:9000/cliente/23");
 		
 		rest.delete(uri);
 		

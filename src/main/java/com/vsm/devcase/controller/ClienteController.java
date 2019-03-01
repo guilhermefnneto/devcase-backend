@@ -1,7 +1,5 @@
 package com.vsm.devcase.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,9 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vsm.devcase.model.Cliente;
-import com.vsm.devcase.repository.ClienteRepository;
+import com.vsm.devcase.service.ClienteService;
 
 
 /**
@@ -24,9 +23,9 @@ import com.vsm.devcase.repository.ClienteRepository;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-	
+		
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private ClienteService clienteService;
 	
 	
 	
@@ -37,44 +36,33 @@ public class ClienteController {
 	 */
 	@PostMapping
 	public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
-		return ResponseEntity.ok(clienteRepository.save(cliente));
+		return ResponseEntity.ok(clienteService.create(cliente));
 	}
 	
 	
 	/**
 	 * Recupera o cliente pelo seu id.
 	 * @param id O identificador do cliente no cadastro.
-	 * @return O POJO do cliente recuperado.
+	 * @return O POJO do cliente recuperado, se não, a informação de que não foi encontrado.
 	 */
 	@GetMapping(value="{id}")
 	public ResponseEntity<Cliente> read(@PathVariable("id") Long id) {
-		Optional<Cliente> optionalCliente = clienteRepository.findById(id);
+		Cliente clienteEncontrado = clienteService.read(id);
 		
-		if (!optionalCliente.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		
-		return ResponseEntity.ok(optionalCliente.get());
+		return clienteEncontrado != null ?ResponseEntity.ok(clienteEncontrado) :ResponseEntity.notFound().build();
 	}
 	
 	
 	/**
 	 * Altera as informações do cliente.
 	 * @param cliente O POJO com todas as informações do cliente, inclusive as já alteradas.
-	 * @return O POJO do cliente alterado.
+	 * @return O POJO do cliente alterado, se não a informação de que não foi encontrado.
 	 */
 	@PutMapping
 	public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
-		Optional<Cliente> optionalClienteRecuperado = clienteRepository.findById(cliente.getId());
+		Cliente clienteAtualizado = clienteService.update(cliente);
 		
-		if (!optionalClienteRecuperado.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		
-		Cliente clienteRecuperado = optionalClienteRecuperado.get();
-		clienteRecuperado.copyFrom(cliente);
-		
-		return ResponseEntity.ok(clienteRepository.save(clienteRecuperado));
+		return clienteAtualizado != null ?ResponseEntity.ok(clienteAtualizado) :ResponseEntity.notFound().build();
 	}
 	
 	
@@ -82,21 +70,23 @@ public class ClienteController {
 	/**
 	 * Remove o cliente correspondente ao id informado.
 	 * @param id O id do cliente a ser removido.
-	 * @return O POJO do cliente removido.
+	 * @return O POJO do cliente removido, se não a informação de que não foi encontrado.
 	 */
-	@DeleteMapping
-	public ResponseEntity<Cliente> delete(@PathVariable("id") Long id) {
-		System.out.println("delete: " + id);
+	@DeleteMapping(value="{id}")
+	public @ResponseBody ResponseEntity<Cliente> delete(@PathVariable("id") Long id) {
+		Cliente clienteRemovido = clienteService.delete(id);
 		
-		Optional<Cliente> optionalClienteRecuperado = clienteRepository.findById(id);
-		
-		if (!optionalClienteRecuperado.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		
-		clienteRepository.deleteById(id);
-		
-		return ResponseEntity.ok().build();
+		return clienteRemovido != null ?ResponseEntity.ok(clienteRemovido) :ResponseEntity.notFound().build();
+	}
+	
+	
+	/**
+	 * Recupera todos os clientes.
+	 * @return Uma lista com todos os clientes cadastrados.
+	 */
+	@GetMapping
+	public ResponseEntity<Iterable<Cliente>> readAll() {
+		return ResponseEntity.ok(clienteService.readAll());
 	}
 	
 	

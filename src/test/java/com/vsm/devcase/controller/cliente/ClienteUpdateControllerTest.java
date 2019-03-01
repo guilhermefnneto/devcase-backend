@@ -31,7 +31,7 @@ public class ClienteUpdateControllerTest {
 		URI uri = new URI("http://localhost:9000/cliente");
 		
 		Cliente cliente = new Cliente();
-		cliente.setId(14L);
+		cliente.setId(23L);
 		cliente.setTelefoneCelular(14977777777L);
 		cliente.setEstadoCivil(EstadoCivil.CASADO);
 		

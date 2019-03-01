@@ -45,7 +45,7 @@ public class ClienteCreateControllerTest {
 		
 		ResponseEntity<Cliente> response = rest.postForEntity(uri, cliente, Cliente.class);
 		
-		Assert.assertEquals(cliente != null, response.getBody() != null);
+		Assert.assertNotNull(response.getBody());
 		
 	}
 	

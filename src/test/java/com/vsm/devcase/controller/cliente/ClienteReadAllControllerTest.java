@@ -11,27 +11,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import com.vsm.devcase.model.Cliente;
-
 
 /**
- * Teste do gerenciamento do cliente: funcionalidade de recuperação de um cliente.
+ * Teste do gerenciamento do cliente: funcionalidade de recuperação de todos os cliente.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ClienteReadControllerTest {
-	
+public class ClienteReadAllControllerTest {
+
 	
 	@Test
-	public void read() throws URISyntaxException {
+	public void readAll() throws URISyntaxException {
+		
 		RestTemplate rest = new RestTemplate();
 		
-		URI uri = new URI("http://localhost:9000/cliente/1");
+		URI uri = new URI("http://localhost:9000/cliente");
 		
-		ResponseEntity<Cliente> response = rest.getForEntity(uri, Cliente.class);
-				
-		Assert.assertEquals("Guilherme Francisco Nuno Neto", response.getBody().getNome());
+		ResponseEntity<Iterable> response = rest.getForEntity(uri, Iterable.class);
+		
+		Assert.assertNotEquals(null, response.getBody().iterator().next());
+		
 	}
 	
-
+	
 }
