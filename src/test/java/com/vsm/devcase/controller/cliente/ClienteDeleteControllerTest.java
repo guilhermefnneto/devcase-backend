@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import com.vsm.devcase.DevcaseApplicationTests;
+
 
 /**
  * Teste do gerenciamento do cliente: funcionalidade de remoção de um cliente.
@@ -24,7 +26,7 @@ public class ClienteDeleteControllerTest {
 		
 		RestTemplate rest = new RestTemplate();
 		
-		URI uri = new URI("http://localhost:9000/cliente/23");
+		URI uri = new URI(DevcaseApplicationTests.SERVER_HOST + "/cliente/23");
 		
 		rest.delete(uri);
 		

@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import com.vsm.devcase.DevcaseApplicationTests;
+
 
 /**
  * Teste do gerenciamento do cliente: funcionalidade de recuperação de todos os cliente.
@@ -25,7 +27,7 @@ public class ClienteReadAllControllerTest {
 		
 		RestTemplate rest = new RestTemplate();
 		
-		URI uri = new URI("http://localhost:9000/cliente");
+		URI uri = new URI(DevcaseApplicationTests.SERVER_HOST + "/cliente");
 		
 		ResponseEntity<Iterable> response = rest.getForEntity(uri, Iterable.class);
 		

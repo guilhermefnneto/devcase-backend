@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import com.vsm.devcase.DevcaseApplicationTests;
 import com.vsm.devcase.model.Cliente;
 import com.vsm.devcase.model.EstadoCivil;
 
@@ -28,7 +29,7 @@ public class ClienteUpdateControllerTest {
 		
 		RestTemplate rest = new RestTemplate();
 		
-		URI uri = new URI("http://localhost:9000/cliente");
+		URI uri = new URI(DevcaseApplicationTests.SERVER_HOST + "/cliente");
 		
 		Cliente cliente = new Cliente();
 		cliente.setId(23L);

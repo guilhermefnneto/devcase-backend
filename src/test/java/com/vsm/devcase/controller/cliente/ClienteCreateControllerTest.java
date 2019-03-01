@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import com.vsm.devcase.DevcaseApplicationTests;
 import com.vsm.devcase.model.Cliente;
 import com.vsm.devcase.model.EstadoCivil;
 import com.vsm.devcase.model.Sexo;
@@ -31,7 +32,7 @@ public class ClienteCreateControllerTest {
 		
 		RestTemplate rest = new RestTemplate();
 		
-		URI uri = new URI("http://localhost:9000/cliente");
+		URI uri = new URI(DevcaseApplicationTests.SERVER_HOST + "/cliente");
 		
 		Cliente cliente = new Cliente();
 		cliente.setNome("Roberto Finâncio");

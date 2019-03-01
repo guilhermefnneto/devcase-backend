@@ -23,7 +23,10 @@ import com.vsm.devcase.service.ClienteService;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-		
+	
+	/**
+	 * Representante dos serviços do cliente.
+	 */
 	@Autowired
 	private ClienteService clienteService;
 	
@@ -42,7 +45,7 @@ public class ClienteController {
 	
 	/**
 	 * Recupera o cliente pelo seu id.
-	 * @param id O identificador do cliente no cadastro.
+	 * @param id O identificador do cliente a ser recuperado.
 	 * @return O POJO do cliente recuperado, se não, a informação de que não foi encontrado.
 	 */
 	@GetMapping(value="{id}")
@@ -54,13 +57,14 @@ public class ClienteController {
 	
 	
 	/**
-	 * Altera as informações do cliente.
-	 * @param cliente O POJO com todas as informações do cliente, inclusive as já alteradas.
+	 * Atualiza as informações do cliente.
+	 * @param id O id do cliente a ser atualizado.
+	 * @param cliente O POJO com todas as informações do cliente, inclusive as já atualizadas.
 	 * @return O POJO do cliente alterado, se não a informação de que não foi encontrado.
 	 */
-	@PutMapping
-	public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
-		Cliente clienteAtualizado = clienteService.update(cliente);
+	@PutMapping(value="{id}")
+	public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody Cliente cliente) {
+		Cliente clienteAtualizado = clienteService.update(id, cliente);
 		
 		return clienteAtualizado != null ?ResponseEntity.ok(clienteAtualizado) :ResponseEntity.notFound().build();
 	}

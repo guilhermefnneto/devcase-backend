@@ -1,6 +1,5 @@
 package com.vsm.devcase.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,9 @@ import com.vsm.devcase.repository.ClienteRepository;
 @Service
 public class ClienteService {
 
+	/**
+	 * Representação de acesso ao repositório do cliente.
+	 */
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
@@ -44,11 +46,12 @@ public class ClienteService {
 	
 	/**
 	 * Método responsável por atualizar as informações do cliente identificado.
-	 * @param cliente POJO do cliente a ser recuperado, contendo as informações de recuperação (o seu id) e também de atualização (as demais informações).
+	 * @param id Id do cliente a ser recuperado.
+	 * @param cliente POJO do cliente contendo as informações de atualização.
 	 * @return O POJO do cliente atualizado. Caso o cliente não tenha sido encontrado, ou não tenha sido atualizado, o retorno será null.
 	 */
-	public Cliente update(Cliente cliente) {
-		Optional<Cliente> optionalClienteRecuperado = clienteRepository.findById(cliente.getId());
+	public Cliente update(Long id, Cliente cliente) {
+		Optional<Cliente> optionalClienteRecuperado = clienteRepository.findById(id);
 		
 		if (!optionalClienteRecuperado.isPresent()) {
 			return null;
@@ -76,7 +79,7 @@ public class ClienteService {
 			return null;
 		}
 		
-		clienteRepository.deleteById(id);
+		clienteRepository.delete(optionalClienteRecuperado.get());
 		
 		return optionalClienteRecuperado.get();
 	}
@@ -95,22 +98,22 @@ public class ClienteService {
 	
 	/**
 	 * Copia os dados do cliente passado como argumento 1º argumento para o objeto do cliente passado como 2º argumento.
-	 * Apenas o id não é copiado.
+	 * Apenas o id e os dados nulos não são copiados.
 	 * @param clienteFrom O objeto que contém as informações a serem copiadas.
 	 * @param clinteTo O objeto para onde as informações serão copiadas.
-	 * @return boolean Caso um dos dois objetos sejam null, o retorno será false, se não, será true.
+	 * @return boolean Caso um dos dois objetos seja null, o retorno será false, se não, será true.
 	 */
 	protected boolean copyFromTo(Cliente clienteFrom, Cliente clienteTo) {
 		if (clienteFrom == null || clienteTo == null) return false;
 		
-		if (clienteFrom.getNome()                 != null) clienteTo.setNome(clienteFrom.getNome());
-		if (clienteFrom.getNascimento()           != null) clienteTo.setNascimento(clienteFrom.getNascimento());
-		if (clienteFrom.getSexo()                 != null) clienteTo.setSexo(clienteFrom.getSexo());
-		if (clienteFrom.getTelefoneResidencial()  != null) clienteTo.setTelefoneResidencial(clienteFrom.getTelefoneResidencial());
-		if (clienteFrom.getTelefoneCelular()      != null) clienteTo.setTelefoneCelular(clienteFrom.getTelefoneCelular());
-		if (clienteFrom.getEmail()                != null) clienteTo.setEmail(clienteFrom.getEmail());
-		if (clienteFrom.getEstadoCivil()          != null) clienteTo.setEstadoCivil(clienteFrom.getEstadoCivil());
-		if (clienteFrom.getPontos()               != null) clienteTo.setPontos(clienteFrom.getPontos());
+		if (clienteFrom.getNome()                 != null) clienteTo.setNome                 (clienteFrom.getNome());
+		if (clienteFrom.getNascimento()           != null) clienteTo.setNascimento           (clienteFrom.getNascimento());
+		if (clienteFrom.getSexo()                 != null) clienteTo.setSexo                 (clienteFrom.getSexo());
+		if (clienteFrom.getTelefoneResidencial()  != null) clienteTo.setTelefoneResidencial  (clienteFrom.getTelefoneResidencial());
+		if (clienteFrom.getTelefoneCelular()      != null) clienteTo.setTelefoneCelular      (clienteFrom.getTelefoneCelular());
+		if (clienteFrom.getEmail()                != null) clienteTo.setEmail                (clienteFrom.getEmail());
+		if (clienteFrom.getEstadoCivil()          != null) clienteTo.setEstadoCivil          (clienteFrom.getEstadoCivil());
+		if (clienteFrom.getPontos()               != null) clienteTo.setPontos               (clienteFrom.getPontos());
 		
 		return true;
 	}

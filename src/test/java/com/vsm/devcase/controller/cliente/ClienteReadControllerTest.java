@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import com.vsm.devcase.DevcaseApplicationTests;
 import com.vsm.devcase.model.Cliente;
 
 
@@ -26,11 +27,11 @@ public class ClienteReadControllerTest {
 	public void read() throws URISyntaxException {
 		RestTemplate rest = new RestTemplate();
 		
-		URI uri = new URI("http://localhost:9000/cliente/1");
+		URI uri = new URI(DevcaseApplicationTests.SERVER_HOST + "/cliente/13");
 		
 		ResponseEntity<Cliente> response = rest.getForEntity(uri, Cliente.class);
 				
-		Assert.assertEquals("Guilherme Francisco Nuno Neto", response.getBody().getNome());
+		Assert.assertEquals("Juliana Marques", response.getBody().getNome());
 	}
 	
 
