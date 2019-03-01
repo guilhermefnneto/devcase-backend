@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 /**
  * Entidade de negócio que representa o cliente.
@@ -26,21 +28,27 @@ public class Cliente {
 	@Column(nullable=false)
 	private String nome;
 
+	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
-	private Date nascimento;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private Date dataNascimento;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable=false)
 	private Sexo sexo;
 	
 	private Long telefoneResidencial;
 	
+	@Column(nullable=false)
 	private Long telefoneCelular;
 	
 	private String email;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable=false)
 	private EstadoCivil estadoCivil;
-	
+
+	@Column(nullable=false)
 	private BigInteger pontos;
 	
 
@@ -60,12 +68,12 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public Date getNascimento() {
-		return nascimento;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setNascimento(Date nascimento) {
-		this.nascimento = nascimento;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Sexo getSexo() {

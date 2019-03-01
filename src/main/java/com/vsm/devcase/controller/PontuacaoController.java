@@ -1,10 +1,14 @@
 package com.vsm.devcase.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vsm.devcase.model.Pontuacao;
 import com.vsm.devcase.service.PontuacaoService;
+import com.vsm.devcase.validation.PontuacaoValidation;
 
 
 /**
@@ -30,13 +35,25 @@ public class PontuacaoController {
 	private PontuacaoService pontuacaoService;
 	
 	
+	
+	/**
+	 * Configuração do objeto que cuidará da validação da pontuação.
+	 * @param binder
+	 */
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(new PontuacaoValidation());
+	}
+	
+	
+	
 	/**
 	 * Cadastra a pontuação.
 	 * @param pontuacao O POJO com todas as informações da pontuação.
 	 * @return O POJO da pontuação cadastrada.
 	 */
 	@PostMapping
-	public ResponseEntity<Pontuacao> create(@RequestBody Pontuacao pontuacao) {
+	public ResponseEntity<Pontuacao> create(@RequestBody @Valid Pontuacao pontuacao) {
 		return ResponseEntity.ok(pontuacaoService.create(pontuacao));
 	}
 	

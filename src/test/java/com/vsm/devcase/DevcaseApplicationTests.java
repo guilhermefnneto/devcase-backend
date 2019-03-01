@@ -57,7 +57,7 @@ public class DevcaseApplicationTests {
 		
 		Cliente cliente = new Cliente();
 		cliente.setNome("Roberto Finâncio");
-		cliente.setNascimento(new SimpleDateFormat("dd/MM/yyyy").parse("17/07/1970"));
+		cliente.setDataNascimento(new SimpleDateFormat("dd/MM/yyyy").parse("17/07/1970"));
 		cliente.setSexo(Sexo.MASCULINO);
 		cliente.setTelefoneResidencial(14999998888L);
 		cliente.setTelefoneCelular(14988889999L);
@@ -168,13 +168,13 @@ public class DevcaseApplicationTests {
     	URI uri = new URI(SERVER_HOST + "/pontuacao");
     	
     	Pontuacao pontuacao = new Pontuacao();
-    	pontuacao.setValorInicial(new BigDecimal("200.01"));
-    	pontuacao.setValorFinal(new BigDecimal("250.0"));
-    	pontuacao.setPontos(new BigInteger("25"));
+    	pontuacao.setValorInicial(new BigDecimal("100.01"));
+    	pontuacao.setValorFinal(new BigDecimal("150.0"));
+    	pontuacao.setPontos(new BigInteger("15"));
     	
     	ResponseEntity<Pontuacao> response = rest.postForEntity(uri, pontuacao, Pontuacao.class);
     	
-    	Assert.assertEquals(25L, response.getBody().getPontos().longValue());
+    	Assert.assertEquals(15L, response.getBody().getPontos().longValue());
     	
     }
    
@@ -281,8 +281,8 @@ public class DevcaseApplicationTests {
     	
     	Venda venda = new Venda();
     	venda.setCliente(cliente);
-    	venda.setData(new SimpleDateFormat("dd/MM/yyyy").parse("01/03/2019"));
-    	venda.setValor(new BigDecimal("220.0"));
+    	venda.setData(new SimpleDateFormat("dd/MM/yyyy").parse("22/02/2019"));
+    	venda.setValor(new BigDecimal("199.0"));
     	
     	ResponseEntity<Venda> response = rest.postForEntity(uri, venda, Venda.class);
     	
@@ -300,7 +300,7 @@ public class DevcaseApplicationTests {
     	
     	RestTemplate rest = new RestTemplate();
     	
-    	URI uri = new URI(SERVER_HOST + "/venda/periodo?inicioperiodo=01/03/2019&fimperiodo=31/03/2019");
+    	URI uri = new URI(SERVER_HOST + "/venda/periodo?inicioperiodo=01/02/2019&fimperiodo=31/03/2019");
     	
     	ResponseEntity<Iterable> response = rest.getForEntity(uri.toString(), Iterable.class);
     	

@@ -1,10 +1,14 @@
 package com.vsm.devcase.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vsm.devcase.model.Cliente;
 import com.vsm.devcase.service.ClienteService;
+import com.vsm.devcase.validation.ClienteValidation;
 
 
 /**
@@ -31,6 +36,15 @@ public class ClienteController {
 	private ClienteService clienteService;
 	
 	
+	/**
+	 * Configuração do objeto que cuidará da validação do cliente.
+	 * @param binder
+	 */
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(new ClienteValidation());
+	}
+	
 	
 	/**
 	 * Cadastra o cliente.
@@ -38,7 +52,7 @@ public class ClienteController {
 	 * @return o POJO do cliente cadastrado.
 	 */
 	@PostMapping
-	public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
+	public ResponseEntity<Cliente> create(@RequestBody @Valid Cliente cliente) {
 		return ResponseEntity.ok(clienteService.create(cliente));
 	}
 	

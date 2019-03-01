@@ -3,11 +3,15 @@ package com.vsm.devcase.controller;
 import java.math.BigInteger;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.vsm.devcase.model.Sexo;
 import com.vsm.devcase.model.Venda;
 import com.vsm.devcase.service.VendaService;
+import com.vsm.devcase.validation.VendaValidation;
 
 
 @Controller
@@ -28,12 +33,22 @@ public class VendaController {
 	
 	
 	/**
+	 * Configuração do objeto que cuidará da validação da venda.
+	 * @param binder
+	 */
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(new VendaValidation());
+	}
+	
+	
+	/**
 	 * Registra a venda.
 	 * @param venda A venda a ser registrada.
 	 * @return A venda registrada, ou null, caso contrário.
 	 */
 	@PostMapping
-	public ResponseEntity<Venda> create(@RequestBody Venda venda) {
+	public ResponseEntity<Venda> create(@RequestBody @Valid Venda venda) {
 		return ResponseEntity.ok(vendaService.create(venda));
 	}
 	

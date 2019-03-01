@@ -129,7 +129,7 @@ public class ClienteService {
 		if (clienteFrom == null || clienteTo == null) return false;
 		
 		if (clienteFrom.getNome()                 != null) clienteTo.setNome                 (clienteFrom.getNome());
-		if (clienteFrom.getNascimento()           != null) clienteTo.setNascimento           (clienteFrom.getNascimento());
+		if (clienteFrom.getDataNascimento()           != null) clienteTo.setDataNascimento           (clienteFrom.getDataNascimento());
 		if (clienteFrom.getSexo()                 != null) clienteTo.setSexo                 (clienteFrom.getSexo());
 		if (clienteFrom.getTelefoneResidencial()  != null) clienteTo.setTelefoneResidencial  (clienteFrom.getTelefoneResidencial());
 		if (clienteFrom.getTelefoneCelular()      != null) clienteTo.setTelefoneCelular      (clienteFrom.getTelefoneCelular());
