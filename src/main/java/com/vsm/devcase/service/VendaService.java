@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vsm.devcase.model.Cliente;
 import com.vsm.devcase.model.Pontuacao;
 import com.vsm.devcase.model.Sexo;
 import com.vsm.devcase.model.Venda;
@@ -35,14 +36,17 @@ public class VendaService {
 	 * @return A venda registrada, caso contrário, null.
 	 */
 	public Venda create(Venda venda) {
-		Venda vendaGravada = vendaRepository.save(venda);
-		
-		Pontuacao pontuacao = pontuacaoService.readByIntervalValor(venda.getValor());
-		if (pontuacao == null) {
+		Cliente clienteRecuperado = clienteService.read(venda.getCliente().getId());
+		if (clienteRecuperado == null) {
 			return null;
 		}
 		
-		clienteService.sumPontos(venda.getCliente().getId(), pontuacao.getPontos());
+		Venda vendaGravada = vendaRepository.save(venda);
+		
+		Pontuacao pontuacao = pontuacaoService.readByIntervalValor(venda.getValor());
+		if (pontuacao != null) {
+			clienteService.sumPontos(venda.getCliente().getId(), pontuacao.getPontos());
+		}
 				
 		return vendaGravada;
 	}

@@ -277,11 +277,11 @@ public class DevcaseApplicationTests {
     	URI uri = new URI(SERVER_HOST + "/venda");
     	
     	Cliente cliente = new Cliente();
-    	cliente.setId(3L);
+    	cliente.setId(1L);
     	
     	Venda venda = new Venda();
     	venda.setCliente(cliente);
-    	venda.setData(new SimpleDateFormat("dd/MM/yyyy").parse("02/01/2019"));
+    	venda.setData(new SimpleDateFormat("dd/MM/yyyy").parse("01/03/2019"));
     	venda.setValor(new BigDecimal("220.0"));
     	
     	ResponseEntity<Venda> response = rest.postForEntity(uri, venda, Venda.class);
@@ -318,7 +318,7 @@ public class DevcaseApplicationTests {
     	
     	RestTemplate rest = new RestTemplate();
     	
-    	URI uri = new URI(SERVER_HOST + "/venda/quantidade?sexo=FEMININO&inicioperiodo=01/02/2019&fimperiodo=31/03/2019");
+    	URI uri = new URI(SERVER_HOST + "/venda/quantidade?sexo=MASCULINO&inicioperiodo=01/02/2019&fimperiodo=31/03/2019");
     	
     	ResponseEntity<BigInteger> response = rest.getForEntity(uri, BigInteger.class);
     	
