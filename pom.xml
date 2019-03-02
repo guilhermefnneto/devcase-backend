@@ -13,7 +13,7 @@
     <version>0.0.5-SNAPSHOT</version>
     <name>devcase</name>
     <description>Developer Case VSM</description>
-
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -44,7 +44,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    
     <build>
         <plugins>
             <plugin>
