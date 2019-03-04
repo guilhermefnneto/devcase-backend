@@ -1,9 +1,12 @@
-DEVCASE TEST
+DEVCASE TEST - BACKENND
 
 
 Observação: Para o objeto cliente, modelei considerando apenas pessoas físicas.
 
 Observação: Deixei para que o JPA-Hibernate cuidasse da criação das tabelas.
+
+Observação: Para as vendas, simplifiquei em apenas uma classe de negócio, colocando um valor para a venda.
+            No cenário real, criaria a solução completa com os objetos de negócio produto e itens de produto, onde estes compunham uma venda.
 
 
 
