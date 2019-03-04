@@ -35,3 +35,7 @@ INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (5, 1.0, 50.0)
 INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (10, 50.00, 100.0);
 INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (15, 100.01, 150.0);
 INSERT INTO pontuacao (pontos, valor_inicial, valor_final) VALUES (20, 150.01, 200.0);
+
+
+Observação: Para gerar o jar do projeto posicione-se na pasta raiz do projeto e execute o comando: mvn -Dmaven.test.strip=true package
+            Este comando ignorará as libraries referentes a testes.
